@@ -15,7 +15,8 @@ ALLOWED_HOSTS = [
     "localhost",
     "lapetiteportugaise.craftstudios.shop",
     "lapetiteportugaise.thekor.eu",
-    "172.100.0.2"
+    "172.100.0.2",
+    "172.100.0.3"
 ]
 
 INSTALLED_APPS = [

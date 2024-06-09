@@ -13,8 +13,8 @@ networks:
       com.docker.network.bridge.name: br_ecom
 
 services:
-  web:
-    # name: ecom-react-webapp:v1
+  backend:
+    container_name: backend_v1
     # image: 'hupratt/django-react'
     build: ./ecom
     restart: always
@@ -47,7 +47,7 @@ services:
   pgadmin:
     image: dpage/pgadmin4
     ports:
-      - 80:80
+      - 88:80
     env_file:
       - ecom/.env
     depends_on:
@@ -56,11 +56,13 @@ services:
       - ecom-network
     volumes:
       - pgadmin-data:/var/lib/pgadmin/
-  web:
+
+  frontend:
+    container_name: frontend_v1
     build: ./frontend
     networks:
       - ecom-network
     ports:
-      - "3000:3000"
+      - "80:80"
     volumes:
       - ./frontend:/frontend
