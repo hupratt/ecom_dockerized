@@ -1,0 +1,66 @@
+volumes:
+  pg_data_ecom:
+  pgadmin-data:
+
+networks:
+  ecom-network:
+    driver: bridge
+    ipam:
+     driver: default
+     config:
+       - subnet: 172.100.0.0/16
+    driver_opts:
+      com.docker.network.bridge.name: br_ecom
+
+services:
+  web:
+    # name: ecom-react-webapp:v1
+    # image: 'hupratt/django-react'
+    build: ./ecom
+    restart: always
+    # build: ./ecom
+    expose:
+      - "8000:8000"
+    volumes:
+      - ./ecom:/usr/src/ecom
+      - ./static:/usr/src/ecom/static
+    networks:
+      - ecom-network
+    env_file: ecom/.env
+    environment:
+      DEBUG: 'true'
+    # command: /usr/local/gunicorn ecom.home.wsgi:application -w 2 -b :8000
+    command: python manage.py runserver 0.0.0.0:8000
+
+  postgres:
+    restart: always
+    image: postgres:12
+    env_file:
+      - ecom/.env
+    ports:
+      - "5432:5432"
+    networks:
+      - ecom-network
+    volumes:
+      - pg_data_ecom:/var/lib/postgresql/data/
+  
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - 80:80
+    env_file:
+      - ecom/.env
+    depends_on:
+      - postgres
+    networks:
+      - ecom-network
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin/
+  web:
+    build: ./frontend
+    networks:
+      - ecom-network
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/frontend

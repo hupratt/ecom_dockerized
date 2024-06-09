@@ -1,0 +1,8 @@
+env
+frontend/node_modules
+*.pyc
+pg-data
+*.log
+.env
+pyvenv.cfg
+static
