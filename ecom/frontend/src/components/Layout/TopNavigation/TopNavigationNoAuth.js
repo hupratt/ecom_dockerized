@@ -78,6 +78,7 @@ class TopNavigationNoAuth extends React.Component {
   }
 }
 
+
 const TopNavigationNoAuthWithTrans = withTranslation()(TopNavigationNoAuth);
 
 export default TopNavigationNoAuthWithTrans;

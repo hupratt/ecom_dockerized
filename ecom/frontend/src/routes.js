@@ -41,7 +41,7 @@ const BaseRouter = (props) => {
       <Route exact path="/checkout" render={() => <Checkout {...props} />} />
       <Route exact path="/profile" render={() => <Profile {...props} />} />
       <Route exact path="/" render={() => <BookListPage {...props} />} />
-      <Route component={FallBack} />
+      {/* <Route path="*" component={FallBack} /> */}
     </Hoc>
   );
 };

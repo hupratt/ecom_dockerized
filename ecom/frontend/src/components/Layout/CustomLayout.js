@@ -267,6 +267,7 @@ class CustomLayout extends React.Component {
     return (
       <React.Fragment>
         {/* Header Section Begin */}
+        
         <header className="header-section" id="fixed-header">
           <div className="wrap-menu-header">
             <div className="container">

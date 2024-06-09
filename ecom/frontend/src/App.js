@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import * as actions from "./actions/auth";
 import "semantic-ui-css/semantic.min.css";
 import CustomLayout from "./components/Layout/CustomLayout";
-import "../static/styles/index.css";
+import "./static/styles/index.css";
 import { CSSTransition } from "react-transition-group";
 
 class App extends Component {

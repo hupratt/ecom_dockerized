@@ -16,4 +16,9 @@ RUN pip install -r requirements.txt
 
 # EXPOSE 8000
 
+FROM node:12-alpine as build-deps
+# COPY package.json package-lock.json /app
+WORKDIR /app
+RUN npm --verbose install
+RUN npm run build
 

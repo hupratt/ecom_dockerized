@@ -129,7 +129,7 @@ class BookAddPage extends React.Component {
             </div>
           </div>
         </section>
-        
+        )
       </div>
     );
   }
