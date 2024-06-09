@@ -17,14 +17,9 @@ export const withLoading = (WrappedComponent) => {
             <Dimmer active inverted>
               <Loader inverted>Loading</Loader>
             </Dimmer>
-            <Image
-              onLoad={() => this.setState({ imageLoaded: true })}
-              style={{
-                width: "100vw",
-                marginLeft: "5vw",
-              }}
-              src="https://minio-api.thekor.eu/bookshop-images-f1492f08-f236-4a55-afb7-70ded209cb27/loader.gif"
-            />
+            <Image style={{
+  height: "100vh",
+}} src='https://minio-api.thekor.eu/bookshop-images-f1492f08-f236-4a55-afb7-70ded209cb27/resources/short-paragraph.png' />
           </Segment>
         );
       }
