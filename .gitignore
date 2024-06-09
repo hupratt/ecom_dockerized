@@ -4,5 +4,6 @@ frontend/node_modules
 pg-data
 *.log
 .env
+.env.development
 pyvenv.cfg
 static

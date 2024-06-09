@@ -66,10 +66,7 @@ const BottomNavigation = () => {
             <i className="far fa-heart" />
             {t("Made By")}
           </div>
-          <img
-            src="https://bookshop-images-f1492f08-f236-4a55-afb7-70ded209cb25.s3.eu-west-2.amazonaws.com/resources/payment-methods.png"
-            alt="payment-details-icons"
-          />
+
         </div>
       </footer>
       {/* Footer Section End */}

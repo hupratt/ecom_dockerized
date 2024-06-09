@@ -3,7 +3,6 @@ from django.core.wsgi import get_wsgi_application
 
 sys.path.append("/app")
 # sys.path.append("/home/ubuntu/Dev/ecom/ecom")
-print(os.path.join(os.path.dirname((os.path.dirname(__file__))),".env.development"))
 
 if os.environ.get("DJANGO_DEVELOPMENT") == "True":
     print("running dev settings")
