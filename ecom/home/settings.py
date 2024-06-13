@@ -13,11 +13,12 @@ ALLOWED_HOSTS = [
     "shop.lapetiteportugaise.eu",
     "127.0.0.1",
     "localhost",
-    "lapetiteportugaise.craftstudios.shop",
-    "lapetiteportugaise.thekor.eu",
-    "172.100.0.2",
-    "172.100.0.3"
+    "10.5.5.1",
+    "lapetiteportugaise2-api.thekor.eu",
+    "lapetiteportugaise-api.thekor.eu",
 ]
+
+ALLOWED_HOSTS += ['172.103.{}.{}'.format(i,j) for i in range(256) for j in range(256)]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -153,6 +154,8 @@ CORS_ORIGIN_ALLOW_ALL = True
 CORS_ORIGIN_WHITELIST = [
     "https://minio-api.thekor.eu",
     "https://posthog.thekor.eu",
+    "https://lapetiteportugaise2.thekor.eu",
+    "https://lapetiteportugaise.thekor.eu",
 ]
 
 

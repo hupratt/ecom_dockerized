@@ -1,5 +1,5 @@
-export const base = "http://localhost:8000";
-// export const base = "https://lapetiteportugaise.thekor.eu";
+//export const base = "http://localhost:8000";
+export const base = "https://lapetiteportugaise-api.thekor.eu";
 
 const apiURL = "/api";
 const mediaURL = "/media/";

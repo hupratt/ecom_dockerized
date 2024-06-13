@@ -8,7 +8,7 @@ networks:
     ipam:
      driver: default
      config:
-       - subnet: 172.100.0.0/16
+       - subnet: 172.103.0.0/16
     driver_opts:
       com.docker.network.bridge.name: br_ecom
 
@@ -19,7 +19,7 @@ services:
     build: ./ecom
     restart: always
     # build: ./ecom
-    expose:
+    ports:
       - "8000:8000"
     volumes:
       - ./ecom:/usr/src/ecom
@@ -30,7 +30,10 @@ services:
     environment:
       DEBUG: 'true'
     # command: /usr/local/gunicorn ecom.home.wsgi:application -w 2 -b :8000
-    command: python manage.py runserver 0.0.0.0:8000
+    # command: python manage.py runserver 0.0.0.0:8000
+    command: sh -c "python manage.py makemigrations &&
+                    python manage.py migrate &&
+                    gunicorn home.wsgi:application -w 2 --bind 0.0.0.0:8000"
 
   postgres:
     restart: always
@@ -43,7 +46,7 @@ services:
       - ecom-network
     volumes:
       - pg_data_ecom:/var/lib/postgresql/data/
-  
+
   pgadmin:
     image: dpage/pgadmin4
     ports:
@@ -63,6 +66,6 @@ services:
     networks:
       - ecom-network
     ports:
-      - "80:80"
+      - 5000:5000
     volumes:
       - ./frontend:/frontend
