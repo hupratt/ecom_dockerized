@@ -1,5 +1,6 @@
 import os, sys, dotenv
 from django.core.wsgi import get_wsgi_application
+from whitenoise import WhiteNoise
 
 sys.path.append("/app")
 # sys.path.append("/home/ubuntu/Dev/ecom/ecom")
@@ -21,4 +22,6 @@ else:
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "home.settings")
 
+# application = get_wsgi_application()
 application = get_wsgi_application()
+application = WhiteNoise(application, root="./static")

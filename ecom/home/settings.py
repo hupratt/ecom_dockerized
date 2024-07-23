@@ -53,6 +53,7 @@ MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    # 'whitenoise.middleware.WhiteNoiseMiddleware'
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -118,7 +119,7 @@ if USE_S3:
     STATIC_ROOT = os.path.join(BASE_DIR, "static")
     MEDIA_ROOT = os.path.join(BASE_DIR, "media")
     # STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/"
-    # STATICFILES_STORAGE = "home.storage_backends.StaticStorage"
+    STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
     # s3 public media settings
     PUBLIC_MEDIA_LOCATION = "media"
     # MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/"

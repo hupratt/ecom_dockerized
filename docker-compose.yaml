@@ -63,6 +63,8 @@ services:
   frontend:
     container_name: frontend_v1
     build: ./frontend
+    env_file:
+      - ecom/.env
     networks:
       - ecom-network
     ports:
