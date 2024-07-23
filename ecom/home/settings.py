@@ -14,8 +14,8 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
     "localhost",
     "10.5.5.1",
-    "lapetiteportugaise2-api.thekor.eu",
     "lapetiteportugaise-api.thekor.eu",
+    "lapetiteportugaise-api2.thekor.eu",
 ]
 
 ALLOWED_HOSTS += ['172.103.{}.{}'.format(i,j) for i in range(256) for j in range(256)]
