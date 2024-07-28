@@ -225,8 +225,13 @@ def create_image(sender, **kwargs):
     if kwargs["created"]:
         book = kwargs["instance"]
         image_instance = ImageLivre.objects.create(
-            livre=book, alt=f"Book import image for isbn: {book.isbn}"
+            livre=book, alt=f"image_instance created for isbn: {book.isbn}"
         )
+        image_instance.save()
+        livre_item_instance = LivreItem.objects.create(
+            livre=book
+        )
+        livre_item_instance.save()
 
 
 post_save.connect(create_image, sender=Livre)
