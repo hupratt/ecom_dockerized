@@ -19,6 +19,16 @@ services:
     build: ./ecom
     restart: always
     # build: ./ecom
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider http://172.103.0.1:8000 || exit 1
+      interval: 60s
+      retries: 5
+      start_period: 20s
+      timeout: 10s
+    depends_on:
+      postgres:
+        condition: service_healthy
+        restart: true
     ports:
       - "8000:8000"
     volumes:
@@ -46,6 +56,12 @@ services:
       - ecom-network
     volumes:
       - pg_data_ecom:/var/lib/postgresql/data/
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-d", "db_prod"]
+      interval: 30s
+      timeout: 60s
+      retries: 5
+      start_period: 80s
 
   pgadmin:
     image: dpage/pgadmin4
@@ -53,16 +69,18 @@ services:
       - 88:80
     env_file:
       - ecom/.env
-    depends_on:
-      - postgres
     networks:
       - ecom-network
     volumes:
       - pgadmin-data:/var/lib/pgadmin/
-
+    depends_on:
+      postgres:
+        condition: service_healthy
+        restart: true
   frontend:
     container_name: frontend_v1
     build: ./frontend
+    restart: always
     env_file:
       - ecom/.env
     networks:
@@ -71,3 +89,16 @@ services:
       - 5000:5000
     volumes:
       - ./frontend:/frontend
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider http://172.103.0.1:5000 || exit 1
+      interval: 60s
+      retries: 5
+      start_period: 20s
+      timeout: 10s
+    depends_on:
+      postgres:
+        condition: service_healthy
+        restart: true
+      backend:
+        condition: service_healthy
+        restart: true
